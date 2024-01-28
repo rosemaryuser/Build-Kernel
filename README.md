@@ -58,6 +58,7 @@ If your kernel also needs to be flashed with DTBO image, set it to true.
 
 ## Credits
 
+- [Ravindu](https://github.com/ravindu644)
 - [AnyKernel3](https://github.com/osm0sis/AnyKernel3)
 - [AOSP](https://android.googlesource.com)
 - [xiaoxindada](https://github.com/xiaoxindada)
