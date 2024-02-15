@@ -1,10 +1,10 @@
-# APatch Action Template
+# KAction Worklow
 
 ## Usage
 
 > After successful build, it will upload AnyKernel3 in `Action`, which has turned off device check, please flash to phone in Twrp.
 
-First fork this repository to your repository and edit config.env as follows, then click `Star` or `Action`, you will see `Build Kernel` option on the left side, click it and you will see `Run workflows` on the top of the big dialog box on the right side, click it and it will start the build.
+First confirm that you have all the required patches for `KernelSU` to work. Then fork this repository to your repository and edit config.env as follows, then click `Star` or `Action`, you will see `Build Kernel` option on the left side, click it and you will see `Run workflows` on the top of the big dialog box on the right side, click it and it will start the build.
 
 ### Kernel Source
 
@@ -32,10 +32,7 @@ e.g. Image.gz-dtb
 
 ### Clang version
 
-The default version is zyc clang17.0.0, if you need to change it, you can go to build-kernel.yml to modify it
-
-Usually Clang12 will pass most kernel builds of 4.14 and above.
-My own Redmi Note 8 Pro 4.14 is using clang17.0.0
+The default version is zyc clang19.0.0, if you need to change it, do it so by editing the build-kernel.yml
 
 ### Extra build commands
 
@@ -46,11 +43,15 @@ e.g. LLVM=1 LLVM_IAS=1
 
 ### Disable LTO
 
-This is used to optimize the kernel, but sometimes it causes errors, so it is provided that it can be disabled, set to true to disable.
+This is used to optimize the kernel, but sometimes it causes errors, so it is provided that it can be disabled, set to false to enable.
 
 ### Use overlayfs
 
-Please enable this parameter if the kernel does not have it, the module requires
+It is recommended to add the overlayfs configs in defconfig of your kernel soure.
+
+`CONFIG_OVERLAY_FS=y`
+`CONFIG_OVERLAY_FS_REDIRECT_DIR=y`
+`CONFIG_OVERLAY_FS_INDEX=y`
 
 ### Need DTBO
 
@@ -58,6 +59,7 @@ If your kernel also needs to be flashed with DTBO image, set it to true.
 
 ## Credits
 
+- [Yervant](https://github.com/Yervant7)
 - [Ravindu](https://github.com/ravindu644)
 - [AnyKernel3](https://github.com/osm0sis/AnyKernel3)
 - [AOSP](https://android.googlesource.com)
