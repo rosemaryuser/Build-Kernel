@@ -26,22 +26,11 @@ jobs:
         echo "ARCH=$(cat $CONFIG_ENV | grep -w "ARCH" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "ADD_LOCALVERSION_TO_FILENAME=$(cat $CONFIG_ENV | grep -w "ADD_LOCALVERSION_TO_FILENAME" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "EXTRA_CMDS=$(cat $CONFIG_ENV | grep -w "EXTRA_CMDS" | head -n 1 | cut -d ":" -f 2)" >> $GITHUB_ENV
-        echo "USE_CUSTOM_CLANG=$(cat $CONFIG_ENV | grep -w "USE_CUSTOM_CLANG" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
-        echo "CUSTOM_CLANG_SOURCE=$(cat $CONFIG_ENV | grep -w "CUSTOM_CLANG_SOURCE" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
-        echo "CUSTOM_CLANG_BRANCH=$(cat $CONFIG_ENV | grep -w "CUSTOM_CLANG_BRANCH" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "CUSTOM_CMDS=$(cat $CONFIG_ENV | grep -w "CUSTOM_CMDS" | head -n 1 | cut -d ":" -f 2)" >> $GITHUB_ENV
         echo "CLANG_BRANCH=$(cat $CONFIG_ENV | grep -w "CLANG_BRANCH" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "CLANG_VERSION=$(cat $CONFIG_ENV | grep -w "CLANG_VERSION" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "ENABLE_GCC_ARM64=$(cat $CONFIG_ENV | grep -w "ENABLE_GCC_ARM64" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "ENABLE_GCC_ARM32=$(cat $CONFIG_ENV | grep -w "ENABLE_GCC_ARM32" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
-        echo "USE_CUSTOM_GCC_64=$(cat $CONFIG_ENV | grep -w "USE_CUSTOM_GCC_64" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
-        echo "CUSTOM_GCC_64_SOURCE=$(cat $CONFIG_ENV | grep -w "CUSTOM_GCC_64_SOURCE" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
-        echo "CUSTOM_GCC_64_BRANCH=$(cat $CONFIG_ENV | grep -w "CUSTOM_GCC_64_BRANCH" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
-        echo "CUSTOM_GCC_64_BIN=$(cat $CONFIG_ENV | grep -w "CUSTOM_GCC_64_BIN" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
-        echo "USE_CUSTOM_GCC_32=$(cat $CONFIG_ENV | grep -w "USE_CUSTOM_GCC_32" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
-        echo "CUSTOM_GCC_32_SOURCE=$(cat $CONFIG_ENV | grep -w "CUSTOM_GCC_32_SOURCE" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
-        echo "CUSTOM_GCC_32_BRANCH=$(cat $CONFIG_ENV | grep -w "CUSTOM_GCC_32_BRANCH" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
-        echo "CUSTOM_GCC_32_BIN=$(cat $CONFIG_ENV | grep -w "CUSTOM_GCC_32_BIN" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "DISABLE-LTO=$(cat $CONFIG_ENV | grep -w "DISABLE-LTO" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "DISABLE_CC_WERROR=$(cat $CONFIG_ENV | grep -w "DISABLE_CC_WERROR" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "USE_CUSTOM_ANYKERNEL3=$(cat $CONFIG_ENV | grep -w "USE_CUSTOM_ANYKERNEL3" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
@@ -57,7 +46,7 @@ jobs:
 
     - name: Setup build kernel environment
       run: |
-        echo "BUILD_TIME=$(TZ=Asia/Shanghai date "+%Y%m%d%H%M")" >> $GITHUB_ENV
+        echo "BUILD_TIME=$(TZ=Asia/Kolkata date "+%Y%m%d%H%M")" >> $GITHUB_ENV
         echo "DEVICE=$(echo ${{ env.KERNEL_CONFIG }} | sed 's!vendor/!!;s!xiaomi/!!;s/_defconfig//;s/_user//;s/-perf//')" >> $GITHUB_ENV
         sudo apt-get update
         sudo apt-get install git ccache automake flex lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev libx11-dev lib32z-dev libgl1-mesa-dev xsltproc unzip device-tree-compiler python2 python3
@@ -127,7 +116,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
         export PATH=$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/bin:$PATH
-        export KBUILD_BUILD_HOST=Github-Action
+        export KBUILD_BUILD_HOST=GitHub
         export KBUILD_BUILD_USER=$(echo ${{ github.actor }} | tr A-Z a-z)
         make -j$(nproc --all) CC=clang O=out ARCH=${{ env.ARCH }} ${{ env.CUSTOM_CMDS }} ${{ env.EXTRA_CMDS }} ${{ env.GCC_64 }} ${{ env.GCC_32 }} ${{ env.KERNEL_CONFIG }}
         if [ ${{ env.ENABLE_CCACHE }} = true ]; then
