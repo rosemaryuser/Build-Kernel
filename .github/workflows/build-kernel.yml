@@ -85,13 +85,7 @@ jobs:
         else
           echo "LOCALVERSION=" >> $GITHUB_ENV
         fi
-
-    - name: KernelSU Patch
-      run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace
-        cd android-kernel
-        echo -e "${color}Patching Kernel for KernelSU...${end}"
-        curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+        
     - name: Setup Configuration for Kernel
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
