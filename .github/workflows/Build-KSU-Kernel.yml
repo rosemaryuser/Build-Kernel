@@ -191,7 +191,7 @@ jobs:
       if: env.CHECK_FILE_IS_OK == 'true'
       uses: actions/upload-artifact@v4
       with:
-        name: MeowX${{ env.LOCALVERSION }}${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
+        name: CoreX${{ env.LOCALVERSION }}${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
         path: kernel_workspace/AnyKernel3/*
 
     - name: Upload DTBO image
