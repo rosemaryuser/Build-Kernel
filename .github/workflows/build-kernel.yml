@@ -54,8 +54,8 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
         mkdir clang-aosp
-        wget https://github.com/ZyCromerZ/Clang/releases/download/19.0.0git-20240223-release/Clang-19.0.0git-20240223.tar.gz
-        tar -C clang-aosp/ -zxvf Clang-19.0.0git-20240223.tar.gz
+        wget https://github.com/ZyCromerZ/Clang/releases/download/20.0.0git-20241104-release/Clang-20.0.0git-20241104.tar.gz
+        tar -C clang-aosp/ -zxvf Clang-20.0.0git-20241104.tar.gz
 
     - name: Download GCC-AOSP
       run: |
