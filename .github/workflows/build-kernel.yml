@@ -197,7 +197,7 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         files: |
-         kernel_workspace/AnyKernel3/*.zip
+         $GITHUB_WORKSPACE/kernel_workspace/AnyKernel3/*.zip
         name: SilonT${{ env.LOCALVERSION }}${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
         tag_name: ${{ github.run_id }}
       env:
