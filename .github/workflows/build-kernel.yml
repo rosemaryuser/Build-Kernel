@@ -152,7 +152,7 @@ jobs:
             cp android-kernel/out/arch/${{ env.ARCH }}/boot/dtbo.img AnyKernel3/
         fi
         cd $GITHUB_WORKSPACE/kernel_workspace/AnyKernel3
-        zip -r9 rosemary-${{ env.KERNEL_VER }}.zip -- *
+        zip -r9 SilontT-${{ env.DEVICE }}.zip -- *
 
     - name: Upload DTBO image
       if: env.CHECK_DTBO_IS_OK == 'true'
