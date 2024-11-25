@@ -82,6 +82,7 @@ jobs:
         cd ${{ github.workspace }}/kernel_workspace/android-kernel
           if [ ${{ inputs.ENABLE_LTO }} == true ]; then
             echo "CONFIG_LTO_CLANG=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} 
+            echo "NAME_LTO=LTO" >> $GITHUB_ENV
           fi
 
     - name: Setup ccache
@@ -123,7 +124,7 @@ jobs:
         fi
         cp android-kernel/out/arch/${{ env.ARCH }}/boot/${{ env.KERNEL_IMAGE_NAME }} AnyKernel3/
         cd ${{ github.workspace }}/kernel_workspace/AnyKernel3
-        zip -r9 NoKernel-${{ env.DEVICE }}.zip -- *
+        zip -r9 NoKernel-${{ env.NAME_LTO }}-${{ env.DEVICE }}.zip -- *
         
     - name: Upload to Release
       uses: softprops/action-gh-release@v2
