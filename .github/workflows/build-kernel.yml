@@ -130,7 +130,7 @@ jobs:
       with:
         files: |
          ${{ github.workspace }}/kernel_workspace/AnyKernel3/*.zip
-        name: Evolution-${{ env.DEVICE }}
+        name: NOKernel-${{ env.DEVICE }}
         tag_name: ${{ github.run_id }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
