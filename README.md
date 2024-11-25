@@ -43,7 +43,7 @@ e.g. LLVM=1 LLVM_IAS=1
 
 ### Disable LTO
 
-This is used to optimize the kernel, but sometimes it causes errors, so it is provided that it can be disabled, set to false to enable.
+This is used to optimize the kernel, but sometimes it causes errors, so it is provided that it can be disabled.
 
 ### Use overlayfs
 
