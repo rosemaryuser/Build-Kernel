@@ -123,7 +123,7 @@ jobs:
         fi
         cp android-kernel/out/arch/${{ env.ARCH }}/boot/${{ env.KERNEL_IMAGE_NAME }} AnyKernel3/
         cd ${{ github.workspace }}/kernel_workspace/AnyKernel3
-        zip -r9 Evolution-${{ env.DEVICE }}.zip -- *
+        zip -r9 NoKernel-${{ env.DEVICE }}.zip -- *
         
     - name: Upload to Release
       uses: softprops/action-gh-release@v2
